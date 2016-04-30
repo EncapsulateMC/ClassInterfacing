@@ -27,6 +27,7 @@ class CInterface {
                     println("Processing class (${classFile.name})... (output: ${classFile.nameWithoutExtension}I.class)")
                     ClassInterfacer().convert(ClassPool.getDefault().makeClass(FileInputStream(classFile)), outputClass)
                 }
+                return
             }
             val currentClass: File = File(args[0])
             if (!currentClass.isFile) {
