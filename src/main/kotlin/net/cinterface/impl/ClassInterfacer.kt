@@ -21,7 +21,11 @@ class ClassInterfacer : Interfacer {
             System.exit(-1)
             return
         }
-        val newClass: CtClass = ClassPool.getDefault().makeClass("${theClass.name}I")
+        if (outputClassFile.exists()) {
+            println("Output class file already exists! Automatically deleting it...")
+            outputClassFile.delete()
+        }
+        val newClass: CtClass = ClassPool.getDefault().makeInterface("${theClass.name}I")
         for (method in theClass.declaredMethods) {
             newClass.addMethod(CtNewMethod.abstractMethod(method.returnType, method.name, method.parameterTypes, arrayOf(), newClass))
         }
