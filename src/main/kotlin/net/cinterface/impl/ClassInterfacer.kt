@@ -18,7 +18,6 @@ class ClassInterfacer : Interfacer {
     override fun convert(theClass: CtClass, outputClassFile: File) {
         if (theClass.isInterface) {
             println("Class given is not a regular class, it is already an interface!")
-            System.exit(-1)
             return
         }
         if (outputClassFile.exists()) {
@@ -31,5 +30,6 @@ class ClassInterfacer : Interfacer {
         }
         val dataStream: DataOutputStream = DataOutputStream(FileOutputStream(outputClassFile))
         newClass.classFile.write(dataStream)
+        println("Class processed!")
     }
 }
