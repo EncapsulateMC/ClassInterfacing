@@ -16,6 +16,11 @@ import java.io.FileOutputStream
  */
 class ClassInterfacer : Interfacer {
     override fun convert(theClass: CtClass, outputClassFile: File) {
+        if (theClass.isInterface) {
+            println("Class given is not a regular class, it is already an interface!")
+            System.exit(-1)
+            return
+        }
         val newClass: CtClass = ClassPool.getDefault().makeClass("${theClass.name}I")
         for (method in theClass.declaredMethods) {
             newClass.addMethod(CtNewMethod.abstractMethod(method.returnType, method.name, method.parameterTypes, arrayOf(), newClass))
