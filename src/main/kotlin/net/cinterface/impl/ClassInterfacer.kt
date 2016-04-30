@@ -16,7 +16,7 @@ import java.io.FileOutputStream
  */
 class ClassInterfacer : Interfacer {
     override fun convert(theClass: CtClass, outputClassFile: File) {
-        val newClass: CtClass = ClassPool.getDefault().makeClass(theClass.name + "I")
+        val newClass: CtClass = ClassPool.getDefault().makeClass("${theClass.name}I")
         for (method in theClass.declaredMethods) {
             newClass.addMethod(CtNewMethod.abstractMethod(method.returnType, method.name, method.parameterTypes, arrayOf(), newClass))
         }
